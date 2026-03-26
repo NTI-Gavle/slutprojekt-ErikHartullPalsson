@@ -1,10 +1,12 @@
+<?php require_once "../config/config.php"; ?>
+
+<h1>Chess App</h1>
+
 <?php
-$pageTitle = "Home"; // <-- set dynamic page title
-require_once __DIR__ . '/../includes/header.php';
+$stmt = $pdo->query("SELECT * FROM users");
+$users = $stmt->fetchAll();
+
+foreach ($users as $user) {
+    echo $user['username'] . "<br>";
+}
 ?>
-
-<h2>Welcome to My Home Project</h2>
-<p>This is the homepage.</p>
-
-<?php
-require_once __DIR__ . '/../includes/footer.php';
