@@ -9,8 +9,6 @@
     <p>Vänligen logga in.</p>
 <?php endif; ?>
 
-<?php require_once "../includes/footer.php"; ?>
-
 <h2>Öppna spel</h2>
 
 <?php
@@ -33,3 +31,5 @@ foreach ($posts as $post):
 <hr>
 
 <?php endforeach; ?>
+
+<?php require_once "../includes/footer.php"; ?>

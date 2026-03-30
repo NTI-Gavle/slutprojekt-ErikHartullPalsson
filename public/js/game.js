@@ -12,6 +12,17 @@ board = Chessboard('board', {
     onDrop: onDrop
 });
 
+fetch(`/api/get_moves.php?game_id=${gameId}`)
+    .then(res => res.json())
+    .then(data => {
+        if (data.length > 0) {
+            let lastMove = data[data.length - 1];
+            game.load(lastMove.fen);
+            board.position(lastMove.fen);
+            lastMoveId = lastMove.id;
+        }
+    });
+
 setInterval(() => {
     fetch(`/api/get_moves.php?game_id=${gameId}&last_id=${lastMoveId}`)
         .then(res => res.json())

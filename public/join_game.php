@@ -19,7 +19,7 @@ if (!$post || $post['status'] !== 'open') {
     die("Spelet är inte tillgängligt");
 }
 
-// Skapar 
+
 $stmt = $pdo->prepare("
     INSERT INTO games (player1_id, player2_id, status, turn)
     VALUES (?, ?, 'active', 'player1')
@@ -32,10 +32,17 @@ $stmt->execute([
 
 $game_id = $pdo->lastInsertId();
 
-// Stänger 
+$startFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+
+$stmt = $pdo->prepare("
+    INSERT INTO moves (game_id, user_id, fen)
+    VALUES (?, ?, ?)
+");
+
+$stmt->execute([$game_id, $_SESSION['user_id'], $startFen]);
+
 $stmt = $pdo->prepare("UPDATE posts SET status = 'closed' WHERE id = ?");
 $stmt->execute([$post_id]);
 
-// Redirect 
 header("Location: game.php?id=" . $game_id);
 exit;

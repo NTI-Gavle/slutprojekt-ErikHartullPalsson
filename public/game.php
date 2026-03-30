@@ -10,6 +10,7 @@ if (!isset($_GET['id'])) {
 
 $game_id = $_GET['id'];
 
+
 // Hämtar 
 $stmt = $pdo->prepare("SELECT * FROM games WHERE id = ?");
 $stmt->execute([$game_id]);
@@ -28,7 +29,7 @@ if ($_SESSION['user_id'] != $game['player1_id'] &&
 
 <h1>Chess Game #<?= $game_id ?></h1>
 
-<div id="board"></div>
+<div id="board" style="width: 400px;"></div>
 
 <h3>Chat</h3>
 <div id="chat-box"></div>
@@ -36,6 +37,6 @@ if ($_SESSION['user_id'] != $game['player1_id'] &&
 <input type="text" id="chat-input">
 <button onclick="sendChat()">Skicka</button>
 
-<script src="/js/game.js"></script>
+<script src="js/game.js"></script>
 
 <?php require_once "../includes/footer.php"; ?>
