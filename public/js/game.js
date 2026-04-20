@@ -1,30 +1,32 @@
-const gameId = new URLSearchParams(window.location.search).get("id");
+document.addEventListener("DOMContentLoaded", function () {
 
-let board = null;
-let game = new Chess();
+    const gameId = new URLSearchParams(window.location.search).get("id");
 
-let lastMoveId = 0;
+    let board = null;
+    let lastMoveId = 0;
 
-//  board
-board = Chessboard('board', {
-    draggable: true,
-    position: 'start',
-    onDrop: onDrop
-});
+    board = Chessboard('board', {
+        draggable: true,
+        position: 'start',
+        onDrop: onDrop
+    });
 
-fetch(`/api/get_moves.php?game_id=${gameId}`)
+
+
+fetch(`/SlutprojektWEBB/public/api/get_moves.php?game_id=${gameId}`)
     .then(res => res.json())
     .then(data => {
         if (data.length > 0) {
             let lastMove = data[data.length - 1];
-            game.load(lastMove.fen);
             board.position(lastMove.fen);
             lastMoveId = lastMove.id;
         }
     });
 
+
+
 setInterval(() => {
-    fetch(`/api/get_moves.php?game_id=${gameId}&last_id=${lastMoveId}`)
+fetch(`/SlutprojektWEBB/public/api/get_moves.php?game_id=${gameId}&last_id=${lastMoveId}`)
         .then(res => res.json())
         .then(data => {
 
@@ -60,3 +62,5 @@ function onDrop(source, target) {
         })
     });
 }
+
+});

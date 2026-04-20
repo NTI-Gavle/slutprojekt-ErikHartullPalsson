@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 require_once "../../config/config.php";
 
 $game_id = $_GET['game_id'];

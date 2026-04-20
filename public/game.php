@@ -4,11 +4,13 @@ require_once "../includes/functions.php";
 
 requireLogin();
 
+
 if (!isset($_GET['id'])) {
     die("Ingen match vald");
 }
 
 $game_id = $_GET['id'];
+
 
 
 // Hämtar 
@@ -31,11 +33,17 @@ if ($_SESSION['user_id'] != $game['player1_id'] &&
 
 <div id="board" style="width: 400px;"></div>
 
+<div id="turn"></div>
+
+
 <h3>Chat</h3>
 <div id="chat-box"></div>
 
 <input type="text" id="chat-input">
 <button onclick="sendChat()">Skicka</button>
+
+<script src="/SlutprojektWEBB/public/js/chessboard.min.js"></script>
+<script src="/SlutprojektWEBB/public/js/game.js"></script>
 
 <script src="js/game.js"></script>
 
