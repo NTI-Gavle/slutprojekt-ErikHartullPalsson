@@ -1,18 +1,22 @@
-<a href="index.php">Home</a>
-<a href="login.php">Login</a>
-<a href="register.php">Register</a>
-<a href="profile.php">Profil</a>
-<a href="create_game.php">Skapa spel</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+    <a class="navbar-brand" href="index.php">♟️ Chess</a>
 
-<nav class="p-3 bg-dark text-white">
-    <a class="text-white me-3" href="/index.php">Home</a>
+<div class="ms-auto">
 
     <?php if (isset($_SESSION['user_id'])): ?>
-        <a class="text-white me-3" href="/profile.php">Profil</a>
-        <a class="text-white me-3" href="/create_game.php">Skapa spel</a>
-        <a class="text-white" href="/logout.php">Logout</a>
+
+        <a class="btn btn-sm btn-outline-light me-2" href="index.php">Home</a>
+        <a class="btn btn-sm btn-outline-light me-2" href="profile.php">Profil</a>
+        <a class="btn btn-sm btn-success me-2" href="create_game.php">Spel</a>
+        <a class="btn btn-sm btn-danger" href="logout.php">Logga ut</a>
+
     <?php else: ?>
-        <a class="text-white me-3" href="/login.php">Login</a>
-        <a class="text-white" href="/register.php">Register</a>
+
+        <a class="btn btn-sm btn-outline-light me-2" href="login.php">Logga in</a>
+        <a class="btn btn-sm btn-primary" href="register.php">Registera</a>
+
     <?php endif; ?>
+
+</div>
+
 </nav>

@@ -1,9 +1,9 @@
 <?php require_once "../config/config.php"; ?>
 
 <form method="POST">
-    <input type="text" name="username">
-    <input type="password" name="password">
-    <button>Login</button>
+    <input type="text" name="username" placeholder="Användarnamn">
+    <input type="password" name="password" placeholder="Lösenord">
+    <button>Logga in</button>
 </form>
 
 <?php
