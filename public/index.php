@@ -42,7 +42,7 @@ require_once "../includes/header.php";
 
 <h2 class="mb-4 text-center">Öppna spel</h2>
 
-<div class="row">
+<div id="games-list" class="row"></div>
 
     <?php
     $stmt = $pdo->query("
@@ -91,5 +91,7 @@ require_once "../includes/header.php";
 </div>
 
 </div>
+
+<script src="js/lobby.js"></script>
 
 <?php require_once "../includes/footer.php"; ?>
