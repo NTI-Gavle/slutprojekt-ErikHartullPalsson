@@ -1,22 +1,56 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-    <a class="navbar-brand" href="index.php">♟️ Chess</a>
 
-<div class="ms-auto">
+    <a class="navbar-brand fw-bold" href="index.php">
+        ♟ Chess
+    </a>
 
-    <?php if (isset($_SESSION['user_id'])): ?>
+    <div class="mx-auto position-relative" style="width: 400px;">
 
-        <a class="btn btn-sm btn-outline-light me-2" href="index.php">Home</a>
-        <a class="btn btn-sm btn-outline-light me-2" href="profile.php">Profil</a>
-        <a class="btn btn-sm btn-success me-2" href="create_game.php">Spel</a>
-        <a class="btn btn-sm btn-danger" href="logout.php">Logga ut</a>
+        <input
+            type="text"
+            id="search-input"
+            class="form-control"
+            placeholder="Sök"
+        >
 
-    <?php else: ?>
+        <div
+            id="search-results"
+            class="list-group position-absolute w-100"
+            style="z-index: 999;"
+        ></div>
 
-        <a class="btn btn-sm btn-outline-light me-2" href="login.php">Logga in</a>
-        <a class="btn btn-sm btn-primary" href="register.php">Registera</a>
+    </div>
 
-    <?php endif; ?>
+    <div class="d-flex gap-2">
 
-</div>
+        <a href="index.php" class="btn btn-outline-light">
+            Home
+        </a>
+
+        <?php if (isset($_SESSION['user_id'])): ?>
+
+            <a href="profile.php" class="btn btn-outline-light">
+                Profil
+            </a>
+
+            <a href="create_game.php" class="btn btn-success">
+                Spel
+            </a>
+
+            <a href="logout.php" class="btn btn-danger">
+                Logga ut
+            </a>
+
+        <?php else: ?>
+
+            <a href="login.php" class="btn btn-outline-light">
+                Logga in
+            </a>
+
+        <?php endif; ?>
+
+    </div>
 
 </nav>
+
+<script src="/SlutprojektWEBB/public/js/search.js"></script>

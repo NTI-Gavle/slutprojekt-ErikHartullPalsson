@@ -2,18 +2,15 @@
 $pageTitle = "Contact";
 require_once __DIR__ . '/../includes/header.php';
 
-// Initialize variables
 $name = $email = $message = '';
 $errors = [];
 $success = false;
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $message = trim($_POST['message'] ?? '');
 
-    // Basic validation
     if (empty($name)) {
         $errors[] = "Name is required.";
     }

@@ -1,25 +1,36 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const gameId = new URLSearchParams(window.location.search).get("id");
+    const gameId =
+        new URLSearchParams(window.location.search).get("id");
 
     const board = Chessboard("board", {
         onDrop: saveBoard
     });
 
-    let latestMoveId = 0;
+    // flippy boi
+    document
+        .getElementById("flip-board")
+        .addEventListener("click", () => {
 
-    // laddar senaste state
+            board.flip();
+
+        });
+
+    // laddar
     function loadBoard() {
 
         fetch(`/SlutprojektWEBB/public/api/get_latest_move.php?game_id=${gameId}`)
+
             .then(res => res.json())
+
             .then(data => {
 
                 if (!data) return;
 
                 if (!data.board_state) return;
 
-                const parsed = JSON.parse(data.board_state);
+                const parsed =
+                    JSON.parse(data.board_state);
 
                 board.setGameState(parsed);
 
@@ -29,10 +40,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    // sparar plaese wörk pls pls pls
+    // sparar plaese work wörk pls pls
     function saveBoard() {
 
-        const gameState = board.getGameState();
+        const gameState =
+            board.getGameState();
 
         fetch("/SlutprojektWEBB/public/api/save_move.php", {
 
@@ -51,11 +63,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    // live 
+    // live
     setInterval(() => {
 
         fetch(`/SlutprojektWEBB/public/api/get_latest_move.php?game_id=${gameId}`)
+
             .then(res => res.json())
+
             .then(data => {
 
                 if (!data) return;
@@ -64,7 +78,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (!data.board_state) return;
 
-                const parsed = JSON.parse(data.board_state);
+                const parsed =
+                    JSON.parse(data.board_state);
 
                 board.setGameState(parsed);
 
