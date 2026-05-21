@@ -2,7 +2,10 @@
 
 require_once "../../config/config.php";
 
+header("Content-Type: application/json");
+
 if (!isset($_SESSION['user_id'])) {
+
     echo json_encode(null);
     exit;
 }
@@ -10,7 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 
 $stmt = $pdo->prepare("
-    SELECT id
+    SELECT *
     FROM games
     WHERE (
         player1_id = ?
@@ -28,4 +31,20 @@ $stmt->execute([
 
 $game = $stmt->fetch();
 
-echo json_encode($game);
+if (!$game) {
+
+    echo json_encode(null);
+    exit;
+}
+
+if (
+    $game["status"] !== "active"
+) {
+
+    echo json_encode(null);
+    exit;
+}
+
+echo json_encode([
+    "id" => $game["id"]
+]);

@@ -34,7 +34,7 @@
             </a>
 
             <a href="create_game.php" class="btn btn-success">
-                Spel
+                Skapa spel
             </a>
 
             <a href="logout.php" class="btn btn-danger">

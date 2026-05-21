@@ -271,3 +271,97 @@ a:hover {
 
     overflow: hidden;
 }
+
+#chat-input::placeholder {
+
+    color: rgba(255,255,255,0.55);
+
+}
+
+.form-control::placeholder {
+
+    color: rgba(255,255,255,0.35) !important;
+
+}
+
+#draw-notification {
+
+    margin-top: 15px;
+
+    display: none;
+
+    background: #2d3748;
+
+    border: 1px solid #4a5568;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    animation: fadeIn 0.2s ease;
+}
+
+#draw-notification p {
+
+    margin-bottom: 12px;
+
+    color: white;
+
+    font-weight: 600;
+}
+
+.draw-buttons {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+        transform: translateY(-5px);
+
+    }
+
+    to {
+
+        opacity: 1;
+        transform: translateY(0);
+
+    }
+}
+
+.lobby-message {
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.7);
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+}
+
+.lobby-message-box {
+
+    background: #1f2937;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    color: white;
+
+    min-width: 350px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.4);
+}

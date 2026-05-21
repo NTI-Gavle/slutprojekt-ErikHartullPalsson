@@ -57,9 +57,34 @@ $stmt = $pdo->prepare("
     VALUES (?, ?, 'active', 'player1')
 ");
 
+if ($post['preferred_color'] === 'white') {
+
+    $player1 = $post['user_id'];
+    $player2 = $_SESSION['user_id'];
+
+} elseif ($post['preferred_color'] === 'black') {
+
+    $player1 = $_SESSION['user_id'];
+    $player2 = $post['user_id'];
+
+} else {
+
+    if (rand(0, 1)) {
+
+        $player1 = $post['user_id'];
+        $player2 = $_SESSION['user_id'];
+
+    } else {
+
+        $player1 = $_SESSION['user_id'];
+        $player2 = $post['user_id'];
+
+    }
+}
+
 $stmt->execute([
-    $post['user_id'],
-    $_SESSION['user_id']
+    $player1,
+    $player2
 ]);
 
 $game_id = $pdo->lastInsertId();
@@ -68,16 +93,72 @@ $initialBoardState = [
 
     "boardState" => [
 
-        "r","n","b","q","k","b","n","r",
-        "p","p","p","p","p","p","p","p",
+        "r",
+        "n",
+        "b",
+        "q",
+        "k",
+        "b",
+        "n",
+        "r",
+        "p",
+        "p",
+        "p",
+        "p",
+        "p",
+        "p",
+        "p",
+        "p",
 
-        "","","","","","","","",
-        "","","","","","","","",
-        "","","","","","","","",
-        "","","","","","","","",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
 
-        "P","P","P","P","P","P","P","P",
-        "R","N","B","Q","K","B","N","R"
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "P",
+        "R",
+        "N",
+        "B",
+        "Q",
+        "K",
+        "B",
+        "N",
+        "R"
     ],
 
     "currentTurn" => "white",

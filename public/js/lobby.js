@@ -21,14 +21,37 @@ function loadGames() {
                         <div class="card-body text-center">
                             <h5>${post.title}</h5>
                             <p>Skapad av: ${post.username}</p>
-                            <a href="join_game.php?id=${post.id}" class="btn btn-primary">
+                            <button
+                                class="btn btn-primary join-btn"
+                                data-id="${post.id}"
+                                data-owner="${post.user_id}">
                                 Gå med
-                            </a>
+                            </button>
                         </div>
-                    </div>
-                `;
+                    </div>`;
 
                 container.appendChild(col);
+
+                const button = col.querySelector(".join-btn");
+
+                button.addEventListener("click", () => {
+
+                    const ownerId = button.dataset.owner;
+                    const gameId = button.dataset.id;
+
+                    if (ownerId == CURRENT_USER_ID) {
+
+                        showLobbyMessage(
+                            "Du kan inte gå med i ditt egna spel"
+                        );
+
+                        return;
+                    }
+
+                    window.location.href =
+                        "join_game.php?id=" + gameId;
+
+                });
             });
 
         });
@@ -50,3 +73,21 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(loadGames, 3000);
     setInterval(checkGame, 2000);
 });
+
+function showLobbyMessage(text) {
+
+    document.getElementById(
+        "lobby-message-text"
+    ).innerText = text;
+
+    document.getElementById(
+        "lobby-message"
+    ).style.display = "flex";
+}
+
+function closeLobbyMessage() {
+
+    document.getElementById(
+        "lobby-message"
+    ).style.display = "none";
+}

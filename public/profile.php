@@ -109,12 +109,12 @@ $games = $stmt->fetchAll();
 
             <div class="col">
                 <h3><?= $user['wins'] ?></h3>
-                <p class="text-success">Wins</p>
+                <p class="text-success">W´s</p>
             </div>
 
             <div class="col">
                 <h3><?= $user['losses'] ?></h3>
-                <p class="text-danger">Losses</p>
+                <p class="text-danger">L´s</p>
             </div>
 
             <div class="col">
